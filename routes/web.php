@@ -67,8 +67,8 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     |--------------------------------------------------------------------------
     |
     */
-    Route::get('role-data', 'Role\RoleController@getAllData')->name('role.data');
     Route::resource('role', 'Role\RoleController');
+    Route::get('role-data', 'Role\RoleController@getAllData')->name('role.data');
     Route::get('role/{id}/destroy', 'Role\RoleController@destroy')->name('destroy');
 
     /*
@@ -79,8 +79,8 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     */
 
 
-    Route::get('permission-data', 'Permission\PermissionController@getAllData')->name('permission.data');
     Route::resource('permission', 'Permission\PermissionController');
+    Route::get('permission-data', 'Permission\PermissionController@getAllData')->name('permission.data');
     Route::get('permission/{id}/destroy', 'Permission\PermissionController@destroy')->name('destroy');
 
 
