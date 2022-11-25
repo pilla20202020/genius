@@ -26,6 +26,13 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{route('institution.index')}}" class="waves-effect">
+                        <i class="mdi mdi-speedometer"></i>
+                        <span>Institution</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

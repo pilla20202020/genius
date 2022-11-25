@@ -54,18 +54,12 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     |
     */
 
-    Route::group(['as' => 'user.', 'prefix' => 'user',], function () {
-        Route::get('', 'User\UserController@index')->name('index')->middleware('permission:user-index');
-        Route::get('user-data', 'User\UserController@getAllData')->name('data')->middleware('permission:user-data');
-        Route::get('create', 'User\UserController@create')->name('create')->middleware('permission:user-create');
-        Route::post('', 'User\UserController@store')->name('store')->middleware('permission:user-store');
-        Route::get('{user}/edit', 'User\UserController@edit')->name('edit')->middleware('permission:user-edit');
-        Route::put('{user}', 'User\UserController@update')->name('update')->middleware('permission:user-update');
-        Route::get('user/{id}/destroy', 'User\UserController@destroy')->name('destroy')->middleware('permission:user-delete');
-        Route::get('update-profile', 'User\UserController@profileUpdate')->name('profileUpdate');
-        Route::post('update-profile/{id}', 'User\UserController@profileUpdateStore')->name('updateProfile');
 
-    });
+    Route::resource('user', 'User\UserController');
+    Route::get('user-data', 'User\UserController@getAllData')->name('user.data');
+    Route::get('user/{id}/destroy', 'User\UserController@destroy')->name('destroy');
+    Route::get('update-profile', 'User\UserController@profileUpdate')->name('user.profileUpdate');
+    Route::post('update-profile/{id}', 'User\UserController@profileUpdateStore')->name('user.updateProfile');
 
     /*
     |--------------------------------------------------------------------------
@@ -73,16 +67,9 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     |--------------------------------------------------------------------------
     |
     */
-
-    Route::group(['as' => 'role.', 'prefix' => 'role',], function () {
-        Route::get('', 'Role\RoleController@index')->name('index')->middleware('permission:role-index');
-        Route::get('role-data', 'Role\RoleController@getAllData')->name('data')->middleware('permission:role-data');
-        Route::get('create', 'Role\RoleController@create')->name('create')->middleware('permission:role-create');
-        Route::post('', 'Role\RoleController@store')->name('store')->middleware('permission:role-store');
-        Route::get('{role}/edit', 'Role\RoleController@edit')->name('edit')->middleware('permission:role-edit');
-        Route::put('{role}', 'Role\RoleController@update')->name('update')->middleware('permission:role-update');
-        Route::get('role/{id}/destroy', 'Role\RoleController@destroy')->name('destroy')->middleware('permission:role-delete');
-    });
+    Route::get('role-data', 'Role\RoleController@getAllData')->name('role.data');
+    Route::resource('role', 'Role\RoleController');
+    Route::get('role/{id}/destroy', 'Role\RoleController@destroy')->name('destroy');
 
     /*
     |--------------------------------------------------------------------------
@@ -91,16 +78,15 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     |
     */
 
-    Route::group(['as' => 'permission.', 'prefix' => 'permission',], function () {
-        Route::get('', 'Permission\PermissionController@index')->name('index')->middleware('permission:role-index');
-        Route::get('permission-data', 'Permission\PermissionController@getAllData')->name('data')->middleware('permission:role-data');
-        Route::get('create', 'Permission\PermissionController@create')->name('create')->middleware('permission:permission-create');
-        Route::post('', 'Permission\PermissionController@store')->name('store')->middleware('permission:role-store');
-        Route::get('{permission}/edit', 'Permission\PermissionController@edit')->name('edit')->middleware('permission:permission-edit');
-        Route::put('{permission}', 'Permission\PermissionController@update')->name('update')->middleware('permission:role-update');
-        Route::get('permission/{id}/destroy', 'Permission\PermissionController@destroy')->name('destroy')->middleware('permission:permission-delete');
-    });
 
+    Route::get('permission-data', 'Permission\PermissionController@getAllData')->name('permission.data');
+    Route::resource('permission', 'Permission\PermissionController');
+    Route::get('permission/{id}/destroy', 'Permission\PermissionController@destroy')->name('destroy');
+
+
+    Route::get('institution-data', 'Institution\InstitutionController@getAllData')->name('institution.data');
+    Route::resource('institution', 'Institution\InstitutionController');
+    Route::get('institution/{id}/destroy', 'Institution\InstitutionController@destroy')->name('destroy');
 
     Route::group(['as'=>'common.', 'prefix'=>'common'], function(){
         Route::post('provinces', 'Common\CommonController@getProvincesByCountryId')->name('province.countryId');

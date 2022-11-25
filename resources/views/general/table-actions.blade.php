@@ -19,11 +19,7 @@
 @endif
 
 @if(!empty($deleteRoute))
-    {{-- <a href="{{$deleteRoute}}"> --}}
-        <button type="button" class="btn btn-icon-toggle" onclick="deleteThis(this); return false;" link="{{$deleteRoute}}">
-            <i class="far fa-trash-alt"></i>
-        </button>
-    {{-- </a> --}}
+    <a href="#"><button type="button" data-route="{{$deleteRoute}}" class="btn btn-icon-toggle btn-delete p-1" data-toggle="tooltip" id="sa-warning" data-placement="top" data-original-title="Delete"><i class="far fa-trash-alt"></i></button></a>
 @endif
 
 @if(!empty($checklist))

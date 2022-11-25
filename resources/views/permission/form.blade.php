@@ -41,11 +41,6 @@
                         </div>
                     </div>
 
-                    <input id="thumbnail" class="form-control" type="text" name="setting[image]" readonly>
-                    <button id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-icon icon-left btn-primary mt-2">
-                        <i class="fa fa-upload"></i> &nbsp;Choose
-                    </button>
-
                 </div>
             </div>
         </div>
@@ -77,19 +72,9 @@
     <script src="{{ asset('resources/js/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{ asset('resources/js/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('resources/js/libs/jquery-validation/dist/additional-methods.min.js') }}"></script>
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.dropify').dropify();
         });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.dropify').dropify();
-        });
-
-        $('#lfm').filemanager('image');
-
     </script>
 @endsection
