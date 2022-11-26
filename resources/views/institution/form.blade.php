@@ -59,12 +59,12 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="control-label">Logo</label><br>
-                            @if($institution->image)
+                            @if(isset($institution) && $institution->image)
                                 <img id="holder" style="margin-top:5px;max-height:150px;" class="img img-fluid mb-2" src="{{$institution->image}}"><br>
                             @endif
                             <div class="d-flex">
                                 
-                                <input id="thumbnail" class="form-control" type="text" name="image" readonly value="{{ old('image', $institution->image ? $institution->image : '') }}">
+                                <input id="thumbnail" class="form-control" type="text" name="image" readonly value="{{ old('image', isset($institution->image) ? $institution->image : '') }}">
                                 <button id="lfm" data-input="thumbnail" data-preview="holder" class="lfm btn btn-icon icon-left btn-primary ml-2 d-flex">
                                     <i class="fa fa-upload"></i> &nbsp;Choose
                                 </button>

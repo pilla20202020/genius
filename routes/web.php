@@ -84,9 +84,23 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     Route::get('permission/{id}/destroy', 'Permission\PermissionController@destroy')->name('destroy');
 
 
-    Route::get('institution-data', 'Institution\InstitutionController@getAllData')->name('institution.data');
     Route::resource('institution', 'Institution\InstitutionController');
+    Route::get('institution-data', 'Institution\InstitutionController@getAllData')->name('institution.data');
     Route::get('institution/{id}/destroy', 'Institution\InstitutionController@destroy')->name('destroy');
+
+    Route::resource('institution', 'Institution\InstitutionController');
+    Route::get('institution-data', 'Institution\InstitutionController@getAllData')->name('institution.data');
+    Route::get('institution/{id}/destroy', 'Institution\InstitutionController@destroy')->name('destroy');
+
+    Route::resource('graduation', 'Graduation\GraduationController');
+    Route::get('graduation-data', 'Graduation\GraduationController@getAllData')->name('graduation.data');
+    Route::get('graduation/{id}/destroy', 'Graduation\GraduationController@destroy')->name('destroy');
+    Route::get('view-ceremony-time/', 'Graduation\GraduationController@viewCeremony')->name('graduation.viewCeremony');
+    Route::post('add-ceremony-time/', 'Graduation\GraduationController@addCeremonyTime')->name('graduation.addCeremonyTime');
+
+    Route::resource('ceremony', 'Ceremony\CeremonyController');
+    Route::get('ceremony-data', 'Ceremony\CeremonyController@getAllData')->name('ceremony.data');
+    Route::get('ceremony/{id}/destroy', 'Ceremony\CeremonyController@destroy')->name('destroy');
 
     Route::group(['as'=>'common.', 'prefix'=>'common'], function(){
         Route::post('provinces', 'Common\CommonController@getProvincesByCountryId')->name('province.countryId');

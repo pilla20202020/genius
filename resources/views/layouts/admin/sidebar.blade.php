@@ -26,11 +26,18 @@
                     </ul>
                 </li>
 
+            
+
                 <li>
-                    <a href="{{route('institution.index')}}" class="waves-effect">
-                        <i class="mdi mdi-speedometer"></i>
+                    <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">
+                        <i class="mdi mdi-share-variant"></i>
                         <span>Institution</span>
                     </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="true">
+                        <li><a href="{{ route('institution.index')}}" aria-expanded="false"><i class="fas fa-school"></i></i> Add Institution</a></li>
+                        <li><a href="{{ route('graduation.index')}}" aria-expanded="false"><i class="fa fa-graduation-cap"></i> Add Graduation</a></li>
+                        <li><a href="{{ route('ceremony.index')}}" aria-expanded="false"><i class="fa fa-lock"></i> View Ceremony Time</a></li>
+                    </ul>
                 </li>
 
             </ul>

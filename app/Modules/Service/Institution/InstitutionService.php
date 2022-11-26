@@ -71,7 +71,7 @@ class InstitutionService extends Service
     public function paginate(array $filter = [])
     {
         $filter['limit'] = 25;
-        return $this->institution->orderBy('id', 'desc')->paginate($filter['limit']);
+        return $this->institution->orderBy('id', 'desc')->where('status','active')->paginate($filter['limit']);
     }
 
     /**
