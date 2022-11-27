@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Modules\Service\Institution;
+namespace App\Modules\Service\Package;
 
-use App\Modules\Models\Institution\Institution;
+use App\Modules\Models\Package\Package;
 use App\Modules\Service\Service;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
-class InstitutionService extends Service
+class PackageService extends Service
 {
-    protected $institution;
+    protected $package;
 
-    public function __construct(Institution $institution)
+    public function __construct(Package $package)
     {
-        $this->institution = $institution;
+        $this->package = $package;
     }
 
 
@@ -23,30 +23,29 @@ class InstitutionService extends Service
     public function getAllData()
 
     {
-        $query = $this->institution->get();
+        $query = $this->package->get();
 
         return DataTables::of($query)
             ->addIndexColumn()
             
-            ->editColumn('image',function(Institution $institution) {
-                if(isset($institution->image)){
-                    return '<img src="'.($institution->image).'" width="100px">';
+            ->editColumn('image',function(Package $package) {
+                if(isset($package->image)){
+                    return '<img src="'.($package->image).'" width="100px">';
                 } else {
                     ;
                 }
             })
-            ->editColumn('status',function(Institution $institution) {
-                if($institution->status == 'active'){
+            ->editColumn('status',function(Package $package) {
+                if($package->status == 'active'){
                     return '<span class="badge badge-info">Active</span>';
                 } else {
                     return '<span class="badge badge-danger">In-Active</span>';
                 }
             })
-            ->editcolumn('actions',function(Institution $institution) {
-                $editRoute =  route('institution.edit',$institution->id);
-                $deleteRoute =  route('institution.destroy',$institution->id);
-                $replicateRoute =  route('institution.replicate',$institution->id);
-                return getTableHtml($institution,'actions',$editRoute,$deleteRoute,$printRoute = null, $viewRoute = null, $btnAction = null, $replicateRoute);
+            ->editcolumn('actions',function(Package $package) {
+                $editRoute =  route('package.edit',$package->id);
+                $deleteRoute =  route('package.destroy',$package->id);
+                return getTableHtml($package,'actions',$editRoute,$deleteRoute);
             })->rawColumns(['status','image'])->make(true);
     }
 
@@ -56,15 +55,15 @@ class InstitutionService extends Service
             // dd($data);
             /* $data['keywords'] = '"'.$data['keywords'].'"';*/
             $data['status'] = (isset($data['status']) ?  $data['status'] : '')=='on' ? 'active' : 'in_active';
-            $institution = $this->institution->create($data);
-            return $institution;
+            $package = $this->package->create($data);
+            return $package;
         } catch (Exception $e) {
             return null;
         }
     }
 
     /**
-     * Paginate all Institution
+     * Paginate all package
      *
      * @param array $filter
      * @return Collection
@@ -72,46 +71,46 @@ class InstitutionService extends Service
     public function paginate(array $filter = [])
     {
         $filter['limit'] = 25;
-        return $this->institution->orderBy('id', 'desc')->where('status','active')->paginate($filter['limit']);
+        return $this->package->orderBy('id', 'desc')->where('status','active')->paginate($filter['limit']);
     }
 
     /**
-     * Get all Institution
+     * Get all package
      *
      * @return Collection
      */
     public function all()
     {
-        return $this->institution->all();
+        return $this->package->all();
     }
 
     /**
-     * Get all Institutions with supervisor type
+     * Get all packages with supervisor type
      *
      * @return Collection
      */
 
 
-    public function find($institutionId)
+    public function find($packageId)
     {
         try {
-            return $this->institution->find($institutionId);
+            return $this->package->find($packageId);
         } catch (Exception $e) {
             return null;
         }
     }
 
 
-    public function update($institutionId, array $data)
+    public function update($packageId, array $data)
     {
         try {
 
-            $institution = $this->institution->find($institutionId);
+            $package = $this->package->find($packageId);
             $data['status'] = (isset($data['status']) ?  $data['status'] : '')=='on' ? 'active' : 'in_active';
-            $institution = $institution->update($data);
+            $package = $package->update($data);
             //$this->logger->info(' created successfully', $data);
 
-            return $institution;
+            return $package;
         } catch (Exception $e) {
             //$this->logger->error($e->getMessage());
             return false;
@@ -119,16 +118,16 @@ class InstitutionService extends Service
     }
 
     /**
-     * Delete a Institution
+     * Delete a package
      *
      * @param Id
      * @return bool
      */
-    public function delete($institutionId)
+    public function delete($packageId)
     {
         try {
-            $institution = $this->institution->find($institutionId);
-            $institution->delete();
+            $package = $this->package->find($packageId);
+            $package->delete();
         } catch (Exception $e) {
             return null;
         }

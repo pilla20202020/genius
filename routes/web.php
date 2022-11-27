@@ -91,6 +91,8 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     Route::resource('institution', 'Institution\InstitutionController');
     Route::get('institution-data', 'Institution\InstitutionController@getAllData')->name('institution.data');
     Route::get('institution/{id}/destroy', 'Institution\InstitutionController@destroy')->name('destroy');
+    Route::get('institution/replicate/{id}', 'Institution\InstitutionController@replicate')->name('institution.replicate');
+
 
     Route::resource('graduation', 'Graduation\GraduationController');
     Route::get('graduation-data', 'Graduation\GraduationController@getAllData')->name('graduation.data');
@@ -110,6 +112,10 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     Route::get('sample-download', 'Graduate\GraduateController@sampleDownload')->name('graduate.sampleDownload');
     Route::get('graduate-{status}', 'Graduate\GraduateController@graduateStatus')->name('graduate.graduateStatus');
 
+
+    Route::resource('package', 'Package\PackageController');
+    Route::get('package-data', 'Package\PackageController@getAllData')->name('package.data');
+    Route::get('package/{id}/destroy', 'Package\PackageController@destroy')->name('destroy');
 
     Route::group(['as'=>'common.', 'prefix'=>'common'], function(){
         Route::post('provinces', 'Common\CommonController@getProvincesByCountryId')->name('province.countryId');

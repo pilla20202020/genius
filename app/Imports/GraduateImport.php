@@ -12,9 +12,9 @@ use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class GraduateImport implements ToModel,WithHeadingRow, SkipsOnError, WithValidation
+class GraduateImport implements ToModel,WithHeadingRow, WithValidation
 {
-    use Importable, SkipsErrors;
+    use Importable;
 
     /**
     * @param array $row
@@ -23,29 +23,27 @@ class GraduateImport implements ToModel,WithHeadingRow, SkipsOnError, WithValida
     */
     public function model(array $row)
     {
-        
         return new Graduates([
             //
             "student_id" => $row['student_id'],
-            "graduation_id" => $row['graduation_id'],
-            "ceremony_id" => $row['ceremony_id'],
             "first_name" => $row['first_name'],
             "last_name" => $row['last_name'],
             "email" => $row['email'],
             "mobile" => $row['mobile'],
             "password" => Hash::make($row['last_name']),
             "status" => $row['status'],
-            "created_by" => $row['created_by'],
-            "created_at" => $row['created_at'],
-            "updated_at" => $row['updated_at'],
-        
         ]);
     }
 
     public function rules(): array
     {
         return[
+            '*.student_id'=> 'required|max:191|unique:customers,student_id',
             '*.email'=> 'required|email|max:191|unique:customers,email',
+            '*.first_name'=> 'required',
+            '*.last_name'=> 'required',
+            '*.last_name'=> 'required',
+            '*.status'=> 'required',
 
         ];
     }

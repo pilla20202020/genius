@@ -115,4 +115,12 @@ class InstitutionController extends Controller
         $institution = $this->institution->delete($id);
         return response()->json(['status'=>true]);
     }
+
+    public function replicate($id) {
+        $institution = $this->institution->find($id)->first();
+        $newInstitution = $institution->replicate();
+        $newInstitution->save();
+        Toastr()->success('Replicate Institution created Successfully','Success');
+        return redirect()->back();
+    }
 }

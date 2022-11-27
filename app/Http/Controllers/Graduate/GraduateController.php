@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Graduate;
 
+use App\Exports\ExportGraduateSample;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Graduate\GraduateRequest;
 use App\Imports\CustomerImport;
@@ -141,18 +142,18 @@ class GraduateController extends Controller
             $validatedata = $request->validate([
                 'file'=> 'required|mimes:xls,xlsx',
             ]);
-            Excel::import(new CustomerImport,request()->file('file'));
+            Excel::import(new GraduateImport,request()->file('file'));
             Toastr()->success('Graduate Imported Successfully','Success');
             return redirect()->route('graduate.index');
         } catch (\Exception $e) {
             dd($e->getMessage());
             return back()->with('error', __('Invalid File Structure!'));
-        }
-       
-        
-        // Session::flash('success', 'Selected list of student were imported successfully.');
-        
+        }        
 
+    }
+
+    public function sampleDownload(){
+        return Excel::download(new ExportGraduateSample(), 'samplegraduate.xlsx');
     }
 
     

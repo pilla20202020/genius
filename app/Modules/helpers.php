@@ -7,11 +7,11 @@ use App\Modules\Models\Setting\Setting;
 use App\Modules\Models\User;
 use Illuminate\Support\Facades\Storage;
 
-function getTableHtml($object, $type, $editRoute = null, $deleteRoute = null, $printRoute = null, $viewRoute = null,$btnAction = null)
+function getTableHtml($object, $type, $editRoute = null, $deleteRoute = null, $printRoute = null, $viewRoute = null,$btnAction = null, $replicateRoute = null)
 {
     switch ($type) {
         case 'actions':
-            return view('general.table-actions', compact('editRoute','deleteRoute','viewRoute','printRoute','btnAction'));
+            return view('general.table-actions', compact('editRoute','deleteRoute','viewRoute','printRoute','btnAction','replicateRoute'));
             break;
 
         case 'availability':

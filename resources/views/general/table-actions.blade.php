@@ -17,6 +17,10 @@
 @if(!empty($btnAction))
     <button type="button" class="btn btn-primary btn-approve btn-sm btn-action mt-1" data-id="{{$btnAction}}">Add Ceremony Time</button>
 @endif
+
+@if(!empty($replicateRoute))
+    <a href="{{$replicateRoute}}"><button type="button" class="btn btn-icon-toggle btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fas fa-copy"></i></button></a>
+@endif
 {{-- 
 @if(!empty($billRoute))
     <a href="{{$billRoute}}" ><button type="button" class="btn btn-warning btn-reject btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Generate Bill">Add Bill</button></a>

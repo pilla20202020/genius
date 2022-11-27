@@ -5,10 +5,10 @@
             <div class="navbar-brand-box">
                 <a href="{{route('dashboard')}}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{asset('images/logo.png')}}" alt="" height="50px">
+                        <img src="{{setting('image')}}" alt="" height="50px">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('images/logo.png')}}" alt="" height="50px">
+                        <img src="{{setting('image')}}" alt="" height="50px">
                     </span>
                 </a>
             </div>

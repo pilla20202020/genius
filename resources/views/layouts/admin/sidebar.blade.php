@@ -54,6 +54,13 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{route('package.index')}}" class="waves-effect">
+                        <i class="mdi mdi-speedometer"></i>
+                        <span>Package</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
