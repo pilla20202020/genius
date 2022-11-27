@@ -102,6 +102,15 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     Route::get('ceremony-data', 'Ceremony\CeremonyController@getAllData')->name('ceremony.data');
     Route::get('ceremony/{id}/destroy', 'Ceremony\CeremonyController@destroy')->name('destroy');
 
+    Route::resource('graduate', 'Graduate\GraduateController');
+    Route::get('graduate-data', 'Graduate\GraduateController@getAllData')->name('graduate.data');
+    Route::get('graduate/{id}/destroy', 'Graduate\GraduateController@destroy')->name('destroy');
+    Route::get('import-graduate', 'Graduate\GraduateController@importGraduate')->name('graduate.importGraduate');
+    Route::post('import/graduate', 'Graduate\GraduateController@storeImportCustomer')->name('graduate.storeImportCustomer');
+    Route::get('sample-download', 'Graduate\GraduateController@sampleDownload')->name('graduate.sampleDownload');
+    Route::get('graduate-{status}', 'Graduate\GraduateController@graduateStatus')->name('graduate.graduateStatus');
+
+
     Route::group(['as'=>'common.', 'prefix'=>'common'], function(){
         Route::post('provinces', 'Common\CommonController@getProvincesByCountryId')->name('province.countryId');
         Route::post('districts', 'Common\CommonController@getDistrictsByProvinceId')->name('district.provinceId');

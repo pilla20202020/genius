@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Modules\Models\Customer;
+namespace App\Modules\Models\Graduates;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
-
-class Customer extends Authenticatable
+class Graduates extends Model
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory;
+
+    protected $table = 'customers';
 
     protected $fillable = [
         'graduation_id',
@@ -27,4 +25,5 @@ class Customer extends Authenticatable
         'remarks',
         'created_by',
     ];
+
 }

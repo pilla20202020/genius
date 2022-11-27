@@ -40,6 +40,20 @@
                     </ul>
                 </li>
 
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">
+                        <i class="mdi mdi-share-variant"></i>
+                        <span>Graduates</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="true">
+                        <li><a href="{{ route('graduate.index')}}" aria-expanded="false"><i class="fas fa-school"></i></i> View Graduate</a></li>
+                        <li><a href="{{ route('graduate.graduateStatus','eligible')}}" aria-expanded="false"><i class="fas fa-school"></i></i> Eligible</a></li>
+                        <li><a href="{{ route('graduate.graduateStatus','register')}}" aria-expanded="false"><i class="fas fa-school"></i></i> Register</a></li>
+                        <li><a href="{{ route('graduate.graduateStatus','incomplete')}}" aria-expanded="false"><i class="fas fa-school"></i></i> Incomplete</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

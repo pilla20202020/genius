@@ -15,7 +15,11 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('student_id')->nullable();
+            $table->string('student_id')->unique();
+            $table->bigInteger('graduation_id')->unsigned()->index()->nullable();
+            $table->foreign('graduation_id')->references('id')->on('graduations')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('ceremony_id')->unsigned()->index()->nullable();
+            $table->foreign('ceremony_id')->references('id')->on('ceremonies')->onUpdate('cascade')->onDelete('cascade');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
@@ -23,7 +27,7 @@ class CreateCustomersTable extends Migration
             $table->string('password');
             $table->string('display_order')->nullable();
             $table->text('remarks')->nullable();
-            $table->enum('status',['active','in_active'])->nullable();
+            $table->string('status');
             $table->bigInteger('created_by')->unsigned()->index()->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
