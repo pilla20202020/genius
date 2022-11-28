@@ -51,17 +51,17 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group ">
-                                <label for="date" class="col-form-label pt-0">Date</label>
+                                <label for="faculty" class="col-form-label pt-0">Faculty</label>
                                 <div class="">
-                                    <input class="form-control" type="date" name="date"
-                                    value="{{ old('date', isset($graduation->date) ? $graduation->date : '') }}" placeholder="Enter Date">
+                                    <input class="form-control" type="text" name="faculty"
+                                    value="{{ old('faculty', isset($graduation->faculty) ? $graduation->faculty : '') }}" placeholder="Enter Faculty">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="from_date" class="col-form-label pt-0">Choose Status</label>
                                 <select name="status" id="" class="select2 tail-select form-control" id="">
@@ -72,6 +72,16 @@
                                 @error('status')
                                     <span class="text-danger">{{ $errors->first('status') }}</span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group ">
+                                <label for="color_code" class="col-form-label pt-0">Color Code</label>
+                                <div class="">
+                                    <input class="form-control" type="text" name="color_code"
+                                    value="{{ old('color_code', isset($graduation->color_code) ? $graduation->color_code : '') }}" placeholder="Enter Color Code">
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -25,7 +25,7 @@ class GraduationRequest extends FormRequest
     {
         $rules = [
             'title'=>'required',
-            'date'=>'required|date',
+            'faculty'=>'required',
         ];
 
         return $rules;

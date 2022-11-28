@@ -27,7 +27,7 @@ class LoginController extends Controller
             $credentials = $request->only('student_id', 'password');
             $authenticate = Auth::guard('customer')->attempt($credentials);
             if($authenticate){
-                return redirect()->route('customer.dashboard');
+                return redirect()->route('customer.index');
             }else{
                 Toastr()->error('Student ID and Password did not match','Error');
                 return redirect()->back();

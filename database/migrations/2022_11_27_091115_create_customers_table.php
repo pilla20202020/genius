@@ -23,11 +23,12 @@ class CreateCustomersTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
+            $table->string('alternative_email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('password');
             $table->string('display_order')->nullable();
             $table->text('remarks')->nullable();
-            $table->string('status');
+            $table->enum('status',['register','eligible','incompleter'])->nullable()->default('eligible');
             $table->bigInteger('created_by')->unsigned()->index()->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

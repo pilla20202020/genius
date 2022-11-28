@@ -79,8 +79,8 @@
 
                 <h3 class="text-center m-0">
                     <a href="index.html" class="logo logo-admin">
-                        <img src="{{asset('images/logo.png')}}" height="80px" alt="logo" class="my-3">
-                        <p>New Project</p>
+                        <img src="{{setting('image')}}" height="80px" alt="logo" class="my-3">
+                        <p>Graduate Regsitration Portal</p>
                     </a>
                 </h3>
 
@@ -155,7 +155,7 @@
     <div class="col-lg-9 p-0 vh-100  d-flex justify-content-center">
         <div class="accountbg d-flex align-items-center">
             <div class="account-title text-center text-white">
-                <h4 class="mt-3 text-white">Customer Management System</h4>
+                <h4 class="mt-3 text-white">Graduation Regsitration Portal</h4>
                 <div class="border w-25 mx-auto border-warning"></div>
             </div>
         </div>

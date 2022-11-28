@@ -141,7 +141,7 @@ class GraduationController extends Controller
             return response()->json([
                 'data' => $ceremony,
                 'status' => true,
-                'message' => "Commission Generated Successfully."
+                'message' => "Ceremony Generated Successfully."
             ]);
         }
     }

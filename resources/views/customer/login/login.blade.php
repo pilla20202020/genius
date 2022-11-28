@@ -73,13 +73,13 @@
     </div>
 </div> --}}
 <div class="row">
-    <div class="col-lg-3 pr-0" >
-        <div class="card mb-0" style="position: relative;transform:translateX(50%);left: 100%;top: 25%">
+    <div class="col-lg-4 pr-0" >
+        <div class="card mb-0" style="position: relative;transform:translateX(50%);left: 50%;top: 25%">
             <div class="card-body">
 
                 <h3 class="text-center m-0">
                     <a href="index.html" class="logo logo-admin">
-                        <img src="{{asset('images/logo.png')}}" height="80px" alt="logo" class="my-3">
+                        <img src="{{setting('image')}}" height="80px" alt="logo" class="my-3">
                     </a>
                 </h3>
 

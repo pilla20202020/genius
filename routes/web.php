@@ -126,7 +126,9 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
 });
 
 
-Route::group(['middleware' => 'customer','namespace' => 'App\Http\Controllers'], function () {
-
+Route::group(['middleware' => 'customer','as' => 'customer.','namespace' => 'App\Http\Controllers', 'prefix' => 'customer'], function () {
+    Route::get('/ceremony-add', 'Customer\FrontendController@index')->name('index');
+    Route::get('/fetch-ceremony-data', 'Customer\FrontendController@fetchCeremonyData')->name('fetchCeremony');
+    Route::post('/ceremony-add', 'Customer\FrontendController@addCeremony')->name('addCeremony');
 
 });

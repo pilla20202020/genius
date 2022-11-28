@@ -23,28 +23,28 @@ class GraduateImport implements ToModel,WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        // dd(explode("-", $row['graduation'], 2));
         return new Graduates([
             //
+            "graduation_id" => strstr($row['graduation'], '-', true),
             "student_id" => $row['student_id'],
             "first_name" => $row['first_name'],
             "last_name" => $row['last_name'],
-            "email" => $row['email'],
+            "email" => $row['email_personal'],
+            "alternative_email" => $row['alternative_email'],
             "mobile" => $row['mobile'],
             "password" => Hash::make($row['last_name']),
-            "status" => $row['status'],
         ]);
     }
 
     public function rules(): array
     {
         return[
+            '*.graduation'=> 'required|max:191|exists:graduations,id',
             '*.student_id'=> 'required|max:191|unique:customers,student_id',
-            '*.email'=> 'required|email|max:191|unique:customers,email',
+            '*.email_personal'=> 'required|email|max:191|unique:customers,email',
             '*.first_name'=> 'required',
             '*.last_name'=> 'required',
-            '*.last_name'=> 'required',
-            '*.status'=> 'required',
-
         ];
     }
 }

@@ -31,7 +31,8 @@
                             <th>S.No.</th>
                             <th>Institution</th>
                             <th>Title</th>
-                            <th>Date</th>
+                            <th>Faculty</th>
+                            <th>Color Code</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -68,29 +69,24 @@
                             </div>
 
                             <div class="col-md-12 mt-2">
-                                <label class="control-label">Time</label>
-                                <input type="time" name="time" class="form-control" required>
+                                <label class="control-label">Location</label>
+                                <input type="text" name="location" class="form-control" required>
                             </div>
 
                             <div class="col-md-12 mt-2">
-                                <label for="Name">Status</label>
-                                <select name="status" class="form-control" required>
-                                    <option value="" selected disabled >Select Status</option>
-                                    <option value="active">Active </option>
-                                    <option value="finished">Finished </option>
-                                </select>
-                                <span class="text-danger">{{ $errors->has('status') ? $errors->first('status') : '' }}</span>
+                                <label class="control-label">Date</label>
+                                <input type="date" name="date" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-12 mt-2">
+                                <label class="control-label">Time</label>
+                                <input type="time" name="time" class="form-control" required>
                             </div>
 
                             <div class="col-md-12 mt-2">
                                 <label class="control-label">Remarks</label>
                                 <textarea name="remarks" class="form-control" ></textarea>
                             </div>
-
-                            
-
-
-                
                         </div>
 
                         <hr>
@@ -110,8 +106,10 @@
                             <tr>
                                 <th>S.No.</th>
                                 <th>Title</th>
+                                <th>Location</th>
+                                <th>Date</th>
                                 <th>Time</th>
-                                <th>Status</th>
+                                
                             </tr>
                         </thead>
                         <tbody id="ceremonylist">
@@ -157,7 +155,8 @@
                     { "data": "DT_RowIndex",  orderable: false, searchable: false },
                     { "data": "institution" },
                     { "data": "title" },
-                    { "data": "date" },
+                    { "data": "faculty" },
+                    { "data": "color_code" },
                     { "data": "status" },
                     { "data": "actions", orderable: false, searchable: false },
                 ],
@@ -187,8 +186,9 @@
                                 tbody_html += "<tr>";
                                 tbody_html += "<td>" + key + "</td>";
                                 tbody_html += "<td>" + ceremony.title + "</td>";
+                                tbody_html += "<td>" + ceremony.location + "</td>";
+                                tbody_html += "<td>" + ceremony.date + "</td>";
                                 tbody_html += "<td>" + ceremony.time + "</td>";
-                                tbody_html += "<td>" + ceremony.status + "</td>";
                                 tbody_html += "</tr>";
                             });
                             $('#ceremonylist').html(tbody_html);

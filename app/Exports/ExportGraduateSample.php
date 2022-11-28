@@ -20,11 +20,10 @@ class ExportGraduateSample implements FromCollection,WithHeadings,WithEvents,Sho
 
     public function __construct()
     {
-        $graduation = Graduation::selectRaw('CONCAT(id, " - ", title) as IdAndName')->orderBy('id')->pluck('IdAndName')->toArray();
-        $marital_status = ['Eligible','Register','Incomplete'];
+        $graduation = Graduation::selectRaw('CONCAT(id, "-", title) as IdAndName')->orderBy('id')->pluck('IdAndName')->toArray();
+        // $status = ['eligible','register','incomplete'];
         $selects = [
             ['columns_name'=>'A','options'=>$graduation],
-            ['columns_name'=>'G','options'=>$marital_status],
         ];
         $this->selects = $selects;
         $this->row_count = 10000;
@@ -45,10 +44,9 @@ class ExportGraduateSample implements FromCollection,WithHeadings,WithEvents,Sho
             'Student Id',
             'First Name',
             'Last Name',
-            'Email',
+            'Email (Personal)',
+            'Alternative Email',
             'Mobile',
-            'Status',
-            
         ];
     }
 

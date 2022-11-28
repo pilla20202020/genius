@@ -18,10 +18,11 @@ class CreateGraduationsTable extends Migration
             $table->bigInteger('institution_id')->unsigned()->index()->nullable();
             $table->foreign('institution_id')->references('id')->on('institutions')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->date('date')->nullable();
+            $table->string('faculty')->nullable();
+            $table->string('color_code')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status',['active','in_active'])->nullable()->default('active');
             $table->string('display_order')->nullable();
             $table->text('remarks')->nullable();
             $table->bigInteger('created_by')->unsigned()->index()->nullable();

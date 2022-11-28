@@ -13,6 +13,8 @@ class Ceremony extends Model
     protected $fillable = [
         'title',
         'graduation_id',
+        'date',
+        'location',
         'time',
         'display_order',
         'status',
