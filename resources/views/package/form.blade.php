@@ -38,7 +38,7 @@
                                 <label for="specialization" class="col-form-label pt-0">price</label>
                                 <div class="">
                                     <input class="form-control" type="text" name="price"
-                                    value="{{ old('price', isset($package->price) ? $package->price : '') }}" placeholder="Enter Price">
+                                    value="{{ old('price', isset($package->price) ? $package->price : '') }}" placeholder="Enter Price" required>
                                 </div>
                             </div>
                         </div>
@@ -46,12 +46,10 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="form-group ">
-                                <label for="description" class="col-form-label pt-0">Description </label>
-                                <div class="">
-                                    <textarea class="form-control" name="description">
-                                    {{ old('description', isset($package->description) ? $package->description : '') }}</textarea>
-                                </div>
+                            <div class="form-group">
+                                <strong>Description</strong>
+                                <textarea name="description" id="" class="ckeditor">{{ old('description', isset($package->description) ? $package->description : '') }}</textarea>
+
                             </div>
                         </div>
                     </div>
@@ -80,10 +78,40 @@
                             @endif
                             <div class="d-flex">
                                 
-                                <input id="thumbnail" class="form-control" type="text" name="image" readonly value="{{ old('image', isset($package->image) ? $package->image : '') }}">
+                                <input id="thumbnail" class="form-control" type="text" name="image" readonly value="{{ old('image', isset($package->image) ? $package->image : '') }}" required>
                                 <button id="lfm" data-input="thumbnail" data-preview="holder" class="lfm btn btn-icon icon-left btn-primary ml-2 d-flex">
                                     <i class="fa fa-upload"></i> &nbsp;Choose
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-sm-6 pl-3 pr-4" style="border-right: 1px solid #ededed">
+                            <div class="form-group d-flex">
+                                <span class="pl-1">Include Presentation Photo </span>
+                                <input type="checkbox" id="switch1" switch="none" name="presentation_photo" {{ old('presentation_photo', isset($package->presentation_photo) ? $package->presentation_photo : '')=='active' ? 'checked':'' }}/>
+                                <label for="switch1" class="ml-auto" data-on-label="On" data-off-label="Off"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 pl-3 pr-4">
+                            <div class="form-group d-flex">
+                                <span class="pl-1">Include Studio Photo </span>
+                                <input type="checkbox" id="switch2" switch="none" name="studio_photo" {{ old('studio_photo', isset($package->studio_photo) ? $package->studio_photo : '')=='active' ? 'checked':'' }}/>
+                                <label for="switch2" class="ml-auto" data-on-label="On" data-off-label="Off"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mt-2 justify-content-center">
+                        <div class="form-group">
+                            <div>
+                                <a class="btn btn-light waves-effect ml-1" href="{{ route('package.index') }}">
+                                    <i class="md md-arrow-back"></i>
+                                    Back
+                                </a>
+                                <input type="submit" name="pageSubmit" class="btn btn-danger waves-effect waves-light" value="Submit">
                             </div>
                         </div>
                     </div>
@@ -94,39 +122,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card" >
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group d-flex">
-                            <span class="pl-1">Status</span>
-                            <input type="checkbox" id="switch1" switch="none" name="status" {{ old('status', isset($package->status) ? $package->status : '')=='active' ? 'checked':'' }}/>
-                            <label for="switch1" class="ml-auto" data-on-label="On" data-off-label="Off"></label>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row mt-2 justify-content-center">
-                    <div class="form-group">
-                        <div>
-                            <a class="btn btn-light waves-effect ml-1" href="{{ route('package.index') }}">
-                                <i class="md md-arrow-back"></i>
-                                Back
-                            </a>
-                            <input type="submit" name="pageSubmit" class="btn btn-danger waves-effect waves-light" value="Submit">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 
 
 @section('page-specific-scripts')
-    <script src="{{asset('resources/js/ckeditor/ckeditor.js') }}"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
     <script src="{{ asset('js/dropify.min.js') }}"></script>
     <script src="{{ asset('resources/js/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{ asset('resources/js/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
@@ -139,5 +139,10 @@
         });
 
         $('.lfm').filemanager('file');
+
+        $(function () {
+            $('.ckeditor').each(function (e) {
+            });
+        });
     </script>
 @endsection

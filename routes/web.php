@@ -130,5 +130,8 @@ Route::group(['middleware' => 'customer','as' => 'customer.','namespace' => 'App
     Route::get('/ceremony-add', 'Customer\FrontendController@index')->name('index');
     Route::get('/fetch-ceremony-data', 'Customer\FrontendController@fetchCeremonyData')->name('fetchCeremony');
     Route::post('/ceremony-add', 'Customer\FrontendController@addCeremony')->name('addCeremony');
+    Route::get('/order-summary', 'Customer\FrontendController@orderSummary')->name('orderSummary');
+    Route::get('/update-checkInStatus/{id}', 'Customer\FrontendController@updateCheckIn')->name('updateCheckIn');
+
 
 });

@@ -5,6 +5,7 @@ namespace App\Modules\Service\Package;
 use App\Modules\Models\Package\Package;
 use App\Modules\Service\Service;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
@@ -35,12 +36,8 @@ class PackageService extends Service
                     ;
                 }
             })
-            ->editColumn('status',function(Package $package) {
-                if($package->status == 'active'){
-                    return '<span class="badge badge-info">Active</span>';
-                } else {
-                    return '<span class="badge badge-danger">In-Active</span>';
-                }
+            ->editColumn('type',function(Package $package) {
+                return ucfirst($package->type);
             })
             ->editcolumn('actions',function(Package $package) {
                 $editRoute =  route('package.edit',$package->id);
@@ -55,10 +52,13 @@ class PackageService extends Service
             // dd($data);
             /* $data['keywords'] = '"'.$data['keywords'].'"';*/
             $data['status'] = (isset($data['status']) ?  $data['status'] : '')=='on' ? 'active' : 'in_active';
+            $data['presentation_photo'] = (isset($data['presentation_photo']) ?  $data['presentation_photo'] : '')=='on' ? 'active' : 'in_active';
+            $data['studio_photo'] = (isset($data['studio_photo']) ?  $data['studio_photo'] : '')=='on' ? 'active' : 'in_active';
             $package = $this->package->create($data);
             return $package;
-        } catch (Exception $e) {
-            return null;
+        } catch (ModelNotFoundException $ex) {
+            return $ex->getMessage();
+
         }
     }
 
@@ -95,8 +95,9 @@ class PackageService extends Service
     {
         try {
             return $this->package->find($packageId);
-        } catch (Exception $e) {
-            return null;
+        } catch (ModelNotFoundException $ex) {
+            return $ex->getMessage();
+
         }
     }
 
@@ -107,13 +108,16 @@ class PackageService extends Service
 
             $package = $this->package->find($packageId);
             $data['status'] = (isset($data['status']) ?  $data['status'] : '')=='on' ? 'active' : 'in_active';
+            $data['presentation_photo'] = (isset($data['presentation_photo']) ?  $data['presentation_photo'] : '')=='on' ? 'active' : 'in_active';
+            $data['studio_photo'] = (isset($data['studio_photo']) ?  $data['studio_photo'] : '')=='on' ? 'active' : 'in_active';
             $package = $package->update($data);
             //$this->logger->info(' created successfully', $data);
 
             return $package;
-        } catch (Exception $e) {
+        } catch (ModelNotFoundException $ex) {
             //$this->logger->error($e->getMessage());
-            return false;
+            return $ex->getMessage();
+
         }
     }
 
@@ -128,8 +132,9 @@ class PackageService extends Service
         try {
             $package = $this->package->find($packageId);
             $package->delete();
-        } catch (Exception $e) {
-            return null;
+        } catch (ModelNotFoundException $ex) {
+            return $ex->getMessage();
+
         }
     }
 

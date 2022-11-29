@@ -15,6 +15,8 @@ class Package extends Model
         'description',
         'image',
         'type',
+        'studio_photo',
+        'presentation_photo',
         'display_order',
         'status',
         'remarks',

@@ -20,6 +20,8 @@ class CreatePackagesTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->enum('type',['main','other'])->nullable()->default('main');
+            $table->enum('presentation_photo',['active','in_active'])->nullable()->default('in_active');
+            $table->enum('studio_photo',['active','in_active'])->nullable()->default('in_active');
             $table->string('display_order')->nullable();
             $table->text('remarks')->nullable();
             $table->string('status');

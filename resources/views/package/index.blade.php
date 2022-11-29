@@ -33,7 +33,6 @@
                             <th>Image</th>
                             <th>Price</th>
                             <th>Package Type</th>
-                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -80,7 +79,6 @@
                     { "data": "image" },
                     { "data": "price" },
                     { "data": "type" },
-                    { "data": "status" },
                     { "data": "actions", orderable: false, searchable: false },
                 ],
                 order: [ [0, 'desc'] ]

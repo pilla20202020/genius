@@ -26,7 +26,6 @@ class PackageRequest extends FormRequest
         $rules = [
             'title'=>'required',
             'price'=>'required',
-            'image'=>'required',
         ];
 
         return $rules;

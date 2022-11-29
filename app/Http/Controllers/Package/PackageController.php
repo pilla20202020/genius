@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Package;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Package\PackageRequest;
 use App\Modules\Service\Package\PackageService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -54,11 +55,17 @@ class PackageController extends Controller
     public function store(PackageRequest $request)
     {
         //
-        if($package = $this->package->create($request->all())) {
-            Toastr()->success('Package Created Successfully','Success');
-            return redirect()->route('package.index');
+        try {
+            if($package = $this->package->create($request->all())) {
+                Toastr()->success('Package Created Successfully','Success');
+                return redirect()->route('package.index');
+    
+            }
+        } catch (ModelNotFoundException $ex) {
+            return $ex->getMessage();
 
         }
+        
     }
 
     /**
